@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "frontend-business",
-    "slug": "frontend-business",
+    "name": "test",
+    "slug": "test",
     "version": "1.0.0",
 
-    "scheme": "frontend-business",
+    "scheme": "test",
     "web": {
       "bundler": "metro",
       "output": "static",
