@@ -1,13 +1,8 @@
 import React, { useImperativeHandle, useRef } from 'react';
 import {
-  Pressable,
   Text,
   Platform,
-  PressableStateCallbackType,
-  PressableProps,
-  GestureResponderEvent,
   View,
-  TouchableOpacity,
   TextInputProps,
   TextProps,
   TextInput,
@@ -15,7 +10,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
 } from 'react-native';
-import * as Haptics from 'expo-haptics';
+
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 
