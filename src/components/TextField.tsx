@@ -51,7 +51,7 @@ type InputVariantProps = Omit<VariantProps<typeof inputVariants>, 'variant'> & {
   variant?: Exclude<VariantProps<typeof inputVariants>['variant'], null>;
 };
 
-type CustomButtonProps = {
+type CustomTextInputProps = {
   className?: string;
   status?: 'error' | 'disabled';
   label?: string;
@@ -65,7 +65,7 @@ type CustomButtonProps = {
   inputWrapperClassName?: string;
 };
 
-type TextFieldProps = TextInputProps & InputVariantProps & CustomButtonProps;
+type TextFieldProps = TextInputProps & InputVariantProps & CustomTextInputProps;
 
 // Define the Button component
 const TextField = React.forwardRef<React.ElementRef<typeof TextInput>, TextFieldProps>(
@@ -91,57 +91,45 @@ const TextField = React.forwardRef<React.ElementRef<typeof TextInput>, TextField
   ) => {
     const inputRef = useRef<TextInput>(null);
     const disabled = props.editable === false || status === 'disabled';
-    const handlePress = () => {
-      if (Platform.OS !== 'web') {
-        Keyboard.dismiss();
-        inputRef.current?.blur();
-      }
-    };
 
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
     return (
-      <TouchableWithoutFeedback onPress={handlePress}>
-        <KeyboardAvoidingView
-          style={{ flex: 1 }}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          <View className={cn(containerClassName)} accessibilityState={{ disabled }}>
-            {!!label && (
-              <Text className={cn(labelClassName)} {...LabelTextProps}>
-                {label}
-              </Text>
-            )}
+      <View className={cn(containerClassName)} accessibilityState={{ disabled }}>
+        {!!label && (
+          <Text className={cn(labelClassName)} {...LabelTextProps}>
+            {label}
+          </Text>
+        )}
 
-            <View className={cn(inputWrapperClassName, 'bg-purple-400')}>
-              {!!LeftAccessory && (
-                <LeftAccessory
-                  className={leftAccessoryClassName}
-                  status={status}
-                  editable={!disabled}
-                  multiline={multiline}
-                />
-              )}
+        <View className={cn(inputWrapperClassName, 'bg-purple-400')}>
+          {!!LeftAccessory && (
+            <LeftAccessory
+              className={leftAccessoryClassName}
+              status={status}
+              editable={!disabled}
+              multiline={multiline}
+            />
+          )}
 
-              <TextInput
-                ref={inputRef}
-                textAlignVertical="top"
-                editable={!disabled}
-                className={cn(inputVariants({ variant, size }), className)}
-                {...props}
-              />
+          <TextInput
+            ref={inputRef}
+            textAlignVertical="top"
+            editable={!disabled}
+            className={cn(inputVariants({ variant, size }), className)}
+            {...props}
+          />
 
-              {!!RightAccessory && (
-                <RightAccessory
-                  className={rightAccessoryClassName}
-                  status={status}
-                  editable={!disabled}
-                  multiline={multiline}
-                />
-              )}
-            </View>
-          </View>
-        </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
+          {!!RightAccessory && (
+            <RightAccessory
+              className={rightAccessoryClassName}
+              status={status}
+              editable={!disabled}
+              multiline={multiline}
+            />
+          )}
+        </View>
+      </View>
     );
   }
 );

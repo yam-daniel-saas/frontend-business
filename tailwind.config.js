@@ -5,6 +5,9 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
+      screens: {
+        web: { raw: '(display-mode: browser)' },
+      },
       colors: {
         primary: 'blue',
       },

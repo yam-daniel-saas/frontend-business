@@ -1,3 +1,4 @@
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 import '../../global.css';
 
 import { Stack } from 'expo-router';
@@ -9,9 +10,10 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-    </Stack>
+    <KeyboardProvider>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
+    </KeyboardProvider>
   );
 }
