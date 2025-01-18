@@ -18,7 +18,8 @@ import { cn } from '@/utils/cn';
 const inputVariants = cva('flex-row items-center justify-center gap-2', {
   variants: {
     variant: {
-      primary: 'bg-white',
+      primary:
+        'flex-1 rounded-md px-1 py-2 text-right text-lg focus:border-0 focus:outline-none focus:ring-0 ',
       secondary: 'ios:border-primary ios:active:bg-primary/5 border border-foreground/40',
       tonal:
         'ios:bg-primary/10 dark:ios:bg-primary/10 ios:active:bg-primary/15 bg-primary/15 dark:bg-primary/30',
@@ -95,14 +96,18 @@ const TextField = React.forwardRef<React.ElementRef<typeof TextInput>, TextField
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
     return (
-      <View className={cn(containerClassName)} accessibilityState={{ disabled }}>
+      <View className={cn('w-full p-2', containerClassName)} accessibilityState={{ disabled }}>
         {!!label && (
-          <Text className={cn(labelClassName)} {...LabelTextProps}>
+          <Text className={cn('text-lg ', labelClassName)} {...LabelTextProps}>
             {label}
           </Text>
         )}
 
-        <View className={cn(inputWrapperClassName, 'bg-purple-400')}>
+        <View
+          className={cn(
+            'flex w-full flex-row items-center rounded-xl border-2 border-neutral-100 bg-neutral-100 focus:border-black/30',
+            inputWrapperClassName
+          )}>
           {!!LeftAccessory && (
             <LeftAccessory
               className={leftAccessoryClassName}
@@ -116,13 +121,15 @@ const TextField = React.forwardRef<React.ElementRef<typeof TextInput>, TextField
             ref={inputRef}
             textAlignVertical="top"
             editable={!disabled}
+            style={[{ lineHeight: 0 }]}
+            placeholderTextColor="rgb(40 40 40 / 0.80)"
             className={cn(inputVariants({ variant, size }), className)}
             {...props}
           />
 
           {!!RightAccessory && (
             <RightAccessory
-              className={rightAccessoryClassName}
+              className={cn('h-8 w-8', rightAccessoryClassName)}
               status={status}
               editable={!disabled}
               multiline={multiline}

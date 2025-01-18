@@ -31,7 +31,7 @@ const buttonVariants = cva('flex-row items-center justify-center gap-2 w-fit', {
   },
   defaultVariants: {
     variant: 'primary',
-    size: 'none',
+    size: 'sm',
   },
 });
 
