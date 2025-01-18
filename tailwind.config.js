@@ -9,7 +9,7 @@ module.exports = {
         web: { raw: '(display-mode: browser)' },
       },
       colors: {
-        primary: 'blue',
+        primary: 'white',
       },
     },
   },
