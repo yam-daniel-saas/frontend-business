@@ -12,7 +12,7 @@ export const EditScreenInfo = ({ path }: { path: string }) => {
         <View className={styles.codeHighlightContainer + styles.homeScreenFilename}>
           <Text>{path}</Text>
         </View>
-        <Text className={styles.getStartedText}>{description}</Text>
+        <Text className="bg-chart-4">{description}</Text>
       </View>
     </View>
   );
